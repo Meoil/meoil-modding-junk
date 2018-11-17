@@ -23,8 +23,7 @@ public class BlockBoringBlock extends Block{
 		this.setCreativeTab(TestStuff.TAB_TESTSTUFF);
 	}
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer(){
 		return BlockRenderLayer.SOLID;
 	}
 }
