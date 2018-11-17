@@ -1,0 +1,10 @@
+#Creative Tab
+itemGroup.teststuff=Test Stuff
+
+#Items
+item.teststuff.armor.fastboots.name=Boots of Haste
+item.teststuff.item.booster.name=Boost
+
+#Blocks
+tile.teststuff.block.spicycube.name=Spicy Cube
+tile.teststuff.block.boringblock.name=Boring Block
