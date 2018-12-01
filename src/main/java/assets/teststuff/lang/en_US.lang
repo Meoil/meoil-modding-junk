@@ -1,9 +1,10 @@
-#Creative Tab
 itemGroup.teststuff=Test Stuff
 
 #Items
 item.teststuff.armor.fastboots.name=Boots of Haste
+item.teststuff.armor.floatypants.name=Levitation Pants
 item.teststuff.item.booster.name=Boost
+item.teststuff.armor.suctionshirt.name=Sphere Projector
 
 #Blocks
 tile.teststuff.block.spicycube.name=Spicy Cube

@@ -1,13 +1,31 @@
 buildscript {
-    repositories {
-        jcenter()
-        maven { url = "https://files.minecraftforge.net/maven" }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-    }
+	
+	repositories {
+		mavenCentral();
+		jcenter();
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT';
+		classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0';
+		classpath 'gradle.plugin.net.minecrell:licenser:0.3';
+	}
+	
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
@@ -22,16 +40,30 @@ compileJava {
 
 minecraft {
     version = "1.12.2-14.23.5.2775"
+    mappings = "snapshot_20171003"
     runDir = "run"
     
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not always work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    replaceIn 'src/main/java/com/meoil/teststuff/TestStuff.java'
+    replace '@VERSION@', project.version
 }
+
+repositories {
+	maven {
+		url = 'https://repo.elytradev.com'
+	}
+}
+
+shadowJar {
+	classifier = "";
+	relocate "com.elytradev.concrete", project_package + ".repackage.com.elytradev.concrete";
+	configurations = [project.configurations.shadow];
+}
+
+reobf {
+	shadowJar { mappingType = "SEARGE" }
+}
+
+tasks.build.dependsOn reobfShadowJar
 
 dependencies {
     // you may put jars on which you depend on in ./libs
