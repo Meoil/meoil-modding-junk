@@ -33,6 +33,10 @@ version = "1.0"
 group = "com.meoil.teststuff" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "teststuff"
 
+def concrete_version="0.5.40";
+def concrete_modules=["common","inventory","recipe","network","reflect"];
+def project_package='com.meoil.teststuff';
+
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
@@ -87,6 +91,11 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+
+    for (String module : concrete_modules) {
+		  shadow 'com.elytradev.concrete:concrete-' + module + ':' + concrete_version;
+		  compile 'com.elytradev.concrete:concrete-' + module + ':' + concrete_version;
+	  }
 }
 
 processResources {
