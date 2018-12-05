@@ -17,9 +17,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileEntityConveyor extends TileEntity implements ITileEntityProvider, IContainerInventoryHolder  {
 	
-	private ConcreteItemStorage itemStorage = new ConcreteItemStorage(9).withName("tile." + TestStuff.MODID + ".conveyor");
+	private ConcreteItemStorage itemStorage;
 	
 	public TileEntityConveyor() {
+		itemStorage = new ConcreteItemStorage(9).withName("tile." + TestStuff.MODID + ".conveyor");
 		itemStorage.listen(this::markDirty);
 	}
 	
@@ -37,7 +38,7 @@ public class TileEntityConveyor extends TileEntity implements ITileEntityProvide
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return null;
+		return new TileEntityConveyor();
 	}
 	
 	@Override

@@ -38,7 +38,7 @@ public class TestStuff {
 	
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
-    	MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(TestStuffItems.class);
 		MinecraftForge.EVENT_BUS.register(TestStuffBlocks.class);
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new IGuiHandler() {
